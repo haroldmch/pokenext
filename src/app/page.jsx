@@ -12,7 +12,7 @@ export default function Home () {
     <main>
       <h2>PokeNext</h2>
       <form action={action}>
-        <input type="text" name="title" placeholder />
+        <input type="text" name="title" placeholder="Title" />
         <button type="submit">Send</button>
       </form>
     </main>
