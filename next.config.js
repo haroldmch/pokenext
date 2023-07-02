@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true,
-    urlImports: [
-      'https://font.flatcode.agency'
-    ]
+    serverActions: true
   },
   images: {
     remotePatterns: [
