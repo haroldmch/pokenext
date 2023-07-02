@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverActions: true
+    serverActions: true,
+    urlImports: [
+      'https://font.flatcode.agency'
+    ]
   },
   images: {
     remotePatterns: [
@@ -9,10 +12,7 @@ const nextConfig = {
         hostname: 'raw.githubusercontent.com'
       }
     ]
-  },
-  urlImports: [
-    'https://font.flatcode.agency'
-  ]
+  }
 }
 
 module.exports = nextConfig
