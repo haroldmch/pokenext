@@ -1,27 +1,81 @@
 'use client'
 
 import { useState } from 'react'
-import { findPokemon } from './action'
+import { searchPokemon } from './action'
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from '@/styles/SearchPokemon.module.scss'
 
 export default function SearchPokemon () {
-  const [pokemon, setPokemon] = useState()
+  const [pokemon, setPokemon] = useState(null)
+  const [pokemonNotFound, setPokemonNotFound] = useState(false)
+  const [isSearching, setIsSearching] = useState(false)
+
+  const handleAction = (data) => {
+    if (pokemon) {
+      setPokemon(null)
+    }
+
+    setIsSearching(true)
+    setPokemonNotFound(false)
+
+    action(data)
+  }
 
   const action = async (data) => {
-    setPokemon(await findPokemon(data.get('pokemon')))
+    try {
+      const results = await searchPokemon(data.get('pokemon'))
+      setPokemon(results)
+      setPokemonNotFound(results === null)
+    } catch (error) {
+      setIsSearching(false)
+      console.error(error)
+    } finally {
+      setIsSearching(false)
+    }
+  }
+
+  const handleSearch = (e) => {
+    const inputValue = e.target.value.trim()
+
+    if (inputValue === '') {
+      setPokemon(null)
+      setPokemonNotFound(false)
+      setIsSearching(false)
+    }
   }
 
   return (
-    <>
-      <form action={action}>
-        <input type="text" name="pokemon" placeholder="Name / ID" />
-        <button type="submit">Search</button>
+    <section className={styles.searchSection}>
+      <form className={styles.searchForm} action={handleAction} >
+        <input type="search" name="pokemon" onChange={handleSearch} autoComplete="off"/>
+        <button type="submit"><i className="far fa-search"></i></button>
       </form>
 
-      { pokemon &&
-      <>
-        <p>{pokemon.name}</p>
-      </>}
+      { pokemon && (
+        <ul className={styles.searchResults}>
+          {pokemon.map((item) => (
+          <Link href={`/pokemon/${item.id}`} alt={`${item.name}`} key={item.id}>
+            <li>
+              <span><i className="far fa-hashtag"></i>{item.id} - {item.name}</span>
+              <Image src={item.sprite} alt={item.name} key={item.id} width="70" height="70"/>
+            </li>
+          </Link>
+          ))}
+        </ul>
+      )}
 
-    </>
+      { isSearching && (
+        <div className={styles.searchLoading}>
+          <p><i className="fad fa-spinner-third fa-spin"></i> Loading, please wait</p>
+        </div>
+      )}
+
+      { pokemonNotFound && (
+        <div className={styles.notFound}>
+          <p>Pokemon not Found</p>
+        </div>
+      )}
+    </section>
   )
 }

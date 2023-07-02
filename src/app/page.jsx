@@ -1,10 +1,12 @@
-// import Image from 'next/image'
-// import styles from './page.module.scss'
+import SearchPokemon from '@/components/SearchPokemon/SearchPokemon'
 
 export default function Home () {
   return (
     <>
-      <h2>PokeNext</h2>
+      <nav>
+        <h2>PokeNext</h2>
+        <SearchPokemon/>
+      </nav>
     </>
   )
 }
