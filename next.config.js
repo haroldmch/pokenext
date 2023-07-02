@@ -9,7 +9,10 @@ const nextConfig = {
         hostname: 'raw.githubusercontent.com'
       }
     ]
-  }
+  },
+  urlImports: [
+    'https://font.flatcode.agency'
+  ]
 }
 
 module.exports = nextConfig
