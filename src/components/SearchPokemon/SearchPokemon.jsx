@@ -8,7 +8,6 @@ import styles from '@/styles/SearchPokemon.module.scss'
 import { BiSearchAlt } from 'react-icons/bi'
 import { HiHashtag } from 'react-icons/hi'
 
-
 export default function SearchPokemon () {
   const [pokemon, setPokemon] = useState(null)
   const [pokemonNotFound, setPokemonNotFound] = useState(false)
