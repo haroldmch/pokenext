@@ -14,7 +14,8 @@ npm install
 yarn dev
 ```
 
-**Step 2: Party Hard!**
+**Step 2: Party Hard in local!**
+http://localhost:3000
 
 ---
 
