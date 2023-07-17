@@ -1,9 +1,10 @@
 'use client'
-
 import { useState } from 'react'
-import { searchPokemon } from './action'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { searchPokemon } from './action'
+
 import styles from '@/styles/SearchPokemon.module.scss'
 import { BiSearchAlt } from 'react-icons/bi'
 import { HiHashtag } from 'react-icons/hi'
@@ -26,11 +27,12 @@ export default function SearchPokemon () {
 
   const action = async (data) => {
     try {
-      const results = await searchPokemon(data.get('pokemon'))
+      const results = await searchPokemon(data.get('pokemon').toLowerCase())
       setPokemon(results)
       setPokemonNotFound(results === null)
     } catch (error) {
       setIsSearching(false)
+      alert(error)
       console.error(error)
     } finally {
       setIsSearching(false)
@@ -60,7 +62,7 @@ export default function SearchPokemon () {
           <Link href={`/pokemon/${item.id}`} alt={`${item.name}`} key={item.id}>
             <li>
               <span><HiHashtag/>{item.id} - {item.name}</span>
-              <Image src={item.sprite} alt={item.name} key={item.id} width="70" height="70"/>
+              <Image src={item.sprite} alt={item.name} width="70" height="70"/>
             </li>
           </Link>
           ))}
