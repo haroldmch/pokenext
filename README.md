@@ -18,6 +18,11 @@ yarn dev
 
 ---
 
+## Deployed
+https://pokenext-steel.vercel.app/
+
+---
+
 ## Documentations
 
 ### Poke API 
