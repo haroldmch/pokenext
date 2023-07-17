@@ -39,3 +39,6 @@ yarn dev
 ```
 yarn lint --fix
 ```
+
+## Design ?
+https://wireframe.cc/QvSWru
