@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useRef, useEffect } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,13 +10,14 @@ import styles from './SearchPokemon.module.scss'
 import { HiHashtag } from 'react-icons/hi'
 
 export default function SearchPokemon () {
-  const [pokemon, setPokemon] = useState(null)
+  const [pokemon, setPokemon] = useState(false)
   const [pokemonNotFound, setPokemonNotFound] = useState(false)
   const [isSearching, setIsSearching] = useState(false)
+  const ref = useRef(null)
 
   const handleAction = (data) => {
     if (pokemon) {
-      setPokemon(null)
+      setPokemon(false)
     }
 
     setIsSearching(true)
@@ -42,23 +44,44 @@ export default function SearchPokemon () {
     const inputValue = e.target.value.trim()
 
     if (inputValue === '') {
-      setPokemon(null)
+      setPokemon(false)
       setPokemonNotFound(false)
       setIsSearching(false)
     }
   }
 
+  const handleLinkClick = () => {
+    setPokemon(false)
+    setPokemonNotFound(false)
+    setIsSearching(false)
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target) && (pokemon || pokemonNotFound || isSearching)) {
+        setPokemon(false)
+        setPokemonNotFound(false)
+        setIsSearching(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [pokemon, pokemonNotFound, isSearching])
+
   return (
-    <section className={styles.searchSection}>
+    <section className={styles.searchSection} ref={ref}>
       <form className={styles.searchForm} action={handleAction} >
         <input type="search" name="pokemon" onChange={handleSearch} autoComplete="off" placeholder="Search..."/>
-        {/* <button type="submit"> <BiSearchAlt/> </button> */}
       </form>
 
       { pokemon && (
         <ul className={styles.searchResults}>
           {pokemon.map((item) => (
-          <Link href={`/pokemon/${item.id}`} alt={`${item.name}`} key={item.id}>
+          <Link href={`/pokemon/${item.id}`} alt={`${item.name}`} key={item.id} onClick={handleLinkClick}>
             <li>
               <span><HiHashtag/>{item.id} - {item.name}</span>
               <Image src={item.sprite} alt={item.name} width="70" height="70"/>
