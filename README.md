@@ -38,6 +38,9 @@ https://pokenext-steel.vercel.app/
 - Just a Pokémon: https://pokeapi.co/api/v2/pokemon/{id}/{name}
 - Generations: https://pokeapi.co/api/v2/generation/{number}
 
+### React Icons
+- https://react-icons.github.io/react-icons/ 
+
 ---
 
 ## Extras

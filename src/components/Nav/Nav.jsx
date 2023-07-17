@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '@/styles/Nav.module.scss'
+import styles from './Nav.module.scss'
 import logo from '../../../public/pokenext_logo.png'
+
+// Icons
+import { CgPokemon } from 'react-icons/cg'
+import { IoMdArrowRoundForward } from 'react-icons/io'
 
 export default function Nav () {
   const generations = [
@@ -21,17 +25,20 @@ export default function Nav () {
       <section className={styles.sectionNav}>
         <nav className={styles.nav}>
           <Link href="/" alt="Home" className={styles.logo}>
-            <Image src={logo} alt="PokeNext" width="70" height="70"/>
-            <h1>PokeNext</h1>
+            <Image src={logo} alt="PokeNext" width="50" height="50"/>
+            <h1>Poke<span>Next.js</span></h1>
           </Link>
           <hr/>
-          <h2>Generations</h2>
+          <h2><CgPokemon/> Generations</h2>
           <ul>
           {generations.map((item) => (
-            <li key={item.id}>{item.id}. {item.name}</li>
+            <li key={item.id}>
+              <Link href={`/generation/${item.id}`} alt={item.name}>
+                {item.name} <IoMdArrowRoundForward/>
+              </Link>
+            </li>
           ))}
           </ul>
-          <hr/>
         </nav>
       </section>
     </>

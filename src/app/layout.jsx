@@ -23,7 +23,10 @@ export default function RootLayout ({ children }) {
           {children}
         </main>
         <footer>
-          2023
+          <hr />
+          <a href="https://pokeapi.co/" alt="PokeAPI" target="_blank" rel="noreferrer">
+            PokeAPI 2023
+          </a>
         </footer>
       </body>
     </html>

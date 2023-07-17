@@ -1,13 +1,15 @@
+@import './variables.scss';
+
 body{
   display: grid;
   height: 100vh;
   grid-template-columns: 20% 80%;
-  grid-template-rows: 95vh 5vh;
+  grid-template-rows: 92vh 8vh;
 
   header{
-    background-color: darkred;
+    background-color: $darkBlack;
     grid-column: 1 / 2;
-    grid-template-rows: 95vh;
+    grid-template-rows: 100vh;
   }
 
   main{
@@ -17,8 +19,24 @@ body{
   }
 
   footer{
-    background-color: darkslateblue;
+    background-color: $darkBlack;
     grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 15px;
+ 
+    a{
+      color: $fontLight;
+      padding-top: 20px;
+      font-size: 0.75rem;
+    }
+    hr{
+      width: 100%;
+      border-color: $fontMedium;
+      height: 1px;
+    }
   }
 }
 

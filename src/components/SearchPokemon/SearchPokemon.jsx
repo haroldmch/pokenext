@@ -5,8 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { searchPokemon } from './action'
 
-import styles from '@/styles/SearchPokemon.module.scss'
-import { BiSearchAlt } from 'react-icons/bi'
+import styles from './SearchPokemon.module.scss'
 import { HiHashtag } from 'react-icons/hi'
 
 export default function SearchPokemon () {
@@ -52,8 +51,8 @@ export default function SearchPokemon () {
   return (
     <section className={styles.searchSection}>
       <form className={styles.searchForm} action={handleAction} >
-        <input type="search" name="pokemon" onChange={handleSearch} autoComplete="off"/>
-        <button type="submit"> <BiSearchAlt/> </button>
+        <input type="search" name="pokemon" onChange={handleSearch} autoComplete="off" placeholder="Search..."/>
+        {/* <button type="submit"> <BiSearchAlt/> </button> */}
       </form>
 
       { pokemon && (
