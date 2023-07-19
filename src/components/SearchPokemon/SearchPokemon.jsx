@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { searchPokemon } from './action'
+import { searchPokemon } from './utils/action'
 
 import styles from './SearchPokemon.module.scss'
 import { HiHashtag } from 'react-icons/hi'
