@@ -10,33 +10,37 @@ import styles from './SearchPokemon.module.scss'
 import { HiHashtag } from 'react-icons/hi'
 
 export default function SearchPokemon () {
-  const [pokemon, setPokemon] = useState(false)
-  const [pokemonNotFound, setPokemonNotFound] = useState(false)
-  const [isSearching, setIsSearching] = useState(false)
+  const [searchState, setSearchState] = useState({
+    results: [],
+    notFound: false,
+    searching: false
+  })
   const ref = useRef(null)
 
   const handleAction = (data) => {
-    if (pokemon) {
-      setPokemon(false)
-    }
-
-    setIsSearching(true)
-    setPokemonNotFound(false)
-
+    setSearchState((prevState) => ({
+      ...prevState,
+      searching: true,
+      notFound: false
+    }))
     action(data)
   }
 
   const action = async (data) => {
     try {
       const results = await searchPokemon(data.get('pokemon').toLowerCase())
-      setPokemon(results)
-      setPokemonNotFound(results === null)
+      setSearchState({
+        results: results || [],
+        notFound: results === null,
+        searching: false
+      })
     } catch (error) {
-      setIsSearching(false)
-      alert(error)
       console.error(error)
     } finally {
-      setIsSearching(false)
+      setSearchState((prevState) => ({
+        ...prevState,
+        searching: false
+      }))
     }
   }
 
@@ -44,24 +48,30 @@ export default function SearchPokemon () {
     const inputValue = e.target.value.trim()
 
     if (inputValue === '') {
-      setPokemon(false)
-      setPokemonNotFound(false)
-      setIsSearching(false)
+      setSearchState({
+        results: [],
+        notFound: false,
+        searching: false
+      })
     }
   }
 
   const handleLinkClick = () => {
-    setPokemon(false)
-    setPokemonNotFound(false)
-    setIsSearching(false)
+    setSearchState({
+      results: [],
+      notFound: false,
+      searching: false
+    })
   }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target) && (pokemon || pokemonNotFound || isSearching)) {
-        setPokemon(false)
-        setPokemonNotFound(false)
-        setIsSearching(false)
+      if (ref.current && !ref.current.contains(e.target) && (searchState.results.length || searchState.notFound || searchState.searching)) {
+        setSearchState({
+          results: [],
+          notFound: false,
+          searching: false
+        })
       }
     }
 
@@ -70,7 +80,7 @@ export default function SearchPokemon () {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [pokemon, pokemonNotFound, isSearching])
+  }, [searchState])
 
   return (
     <section className={styles.searchSection} ref={ref}>
@@ -78,9 +88,9 @@ export default function SearchPokemon () {
         <input type="search" name="pokemon" onChange={handleSearch} autoComplete="off" placeholder="Search..."/>
       </form>
 
-      { pokemon && (
+      { searchState.results.length > 0 && (
         <ul className={styles.searchResults}>
-          {pokemon.map((item) => (
+          {searchState.results.map((item) => (
           <Link href={`/pokemon/${item.id}`} alt={`${item.name}`} key={item.id} onClick={handleLinkClick}>
             <li>
               <span><HiHashtag/>{item.id} - {item.name}</span>
@@ -91,13 +101,13 @@ export default function SearchPokemon () {
         </ul>
       )}
 
-      { isSearching && (
+      { searchState.searching && (
         <div className={styles.searchLoading}>
           <p><i className="fad fa-spinner-third fa-spin"></i> Loading, please wait</p>
         </div>
       )}
 
-      { pokemonNotFound && (
+      { searchState.notFound && (
         <div className={styles.notFound}>
           <p>Pokemon not Found</p>
         </div>
