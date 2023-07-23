@@ -6,7 +6,8 @@ import PokemonType from '@/components/PokemonType/PokemonType'
 
 export default async function Pokemon (props) {
   const id = props.id
-  const rawPokemon = await findPokemon(id)
+  const cache = props.cache || true
+  const rawPokemon = await findPokemon(id, cache)
 
   // Validar que el objeto raw pokemon contenga información
   if (!rawPokemon) {

@@ -9,9 +9,11 @@ export async function findAllPokemon () {
   }
 }
 
-export async function findPokemon (id) {
+export async function findPokemon (id, cache = true) {
+  const cacheType = (cache) ? 'default' : 'no-store'
+
   try {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { cache: 'no-store' }) || {}
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { cache: cacheType }) || {}
     const pokemon = await res.json()
     return pokemon
   } catch (error) {

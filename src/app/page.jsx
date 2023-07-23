@@ -24,7 +24,7 @@ export default function Home () {
 
   return (
     <>
-      <Pokemon id={id} />
+      <Pokemon id={id} cache="false" />
     </>
   )
 }
