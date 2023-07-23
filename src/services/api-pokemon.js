@@ -11,7 +11,7 @@ export async function findAllPokemon () {
 
 export async function findPokemon (id) {
   try {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`) || {}
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, { cache: 'no-store' }) || {}
     const pokemon = await res.json()
     return pokemon
   } catch (error) {
