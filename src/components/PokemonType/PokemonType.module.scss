@@ -1,0 +1,94 @@
+@import '../../styles/variables.scss';
+
+@mixin duoType ($first, $second) {
+  background: linear-gradient(290deg, $second 75%, $first 50%);
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  
+  .icon{
+    display: flex;
+    justify-content: center;
+    width: 25%;
+  }
+  .name{
+    display: flex;
+    justify-content: center;
+    width: 75%;
+  }
+
+  &.bug{
+    @include duoType($firstBug, $secondBug);
+  }
+
+  &.dark{
+    @include duoType($firstDark, $secondDark);
+  }
+
+  &.dragon{
+    @include duoType($firstDragon, $secondDragon);
+  }
+
+  &.electric{
+    @include duoType($firstElectric, $secondElectric);
+  }
+
+  &.fairy{
+    @include duoType($firstFairy, $secondFairy);
+  }
+
+  &.fighting{
+    @include duoType($firstFighting, $secondFighting);
+  }
+
+  &.fire{
+    @include duoType($firstFire, $secondFire);
+  }
+
+  &.flying{
+    @include duoType($firstFlying, $secondFlying);
+  }
+  
+  &.ghost{
+    @include duoType($firstGhost, $secondGhost);
+  }
+
+  &.grass{
+    @include duoType($firstGrass, $secondGrass);
+  }
+
+  &.ground{
+    @include duoType($firstGround, $secondGround);
+  }
+
+  &.ice{
+    @include duoType($firstIce, $secondIce);
+  }
+
+  &.normal{
+    @include duoType($firstNormal, $secondNormal);
+  }
+
+  &.poison{
+    @include duoType($firstPoison, $secondPoison);
+  }
+
+  &.psychic{
+    @include duoType($firstPsychic, $secondPsychic);
+  }
+
+  &.rock{
+    @include duoType($firstRock, $secondRock);
+  }
+
+  &.steel{
+    @include duoType($firstSteel, $secondSteel);
+  }
+
+  &.water{
+    @include duoType($firstWater, $secondWater);
+  }
+}

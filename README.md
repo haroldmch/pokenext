@@ -41,6 +41,9 @@ https://pokenext-steel.vercel.app/
 ### React Icons
 - https://react-icons.github.io/react-icons/ 
 
+### High 
+- https://github.com/HybridShivam/Pokemon
+
 ---
 
 ## Extras

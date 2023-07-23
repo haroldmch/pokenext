@@ -18,3 +18,13 @@ export async function findPokemon (id) {
     return false
   }
 }
+
+export async function findFlavorPokemon (id) {
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`) || {}
+    const pokemon = await res.json()
+    return pokemon
+  } catch (error) {
+    return false
+  }
+}
