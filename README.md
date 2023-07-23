@@ -53,5 +53,11 @@ https://pokenext-steel.vercel.app/
 yarn lint --fix
 ```
 
-## Design ?
+---
+
+## Design 
+### Wireframe
 https://wireframe.cc/QvSWru
+
+### Pallete
+https://colorhunt.co/palette/525252414141313131ca3e47
