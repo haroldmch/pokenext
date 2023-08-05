@@ -7,18 +7,27 @@
 .wrapper{
   display: flex;
   flex-direction: row;
-  width: 100px;
-  
+  width: 115px;
+  color: $fontLight;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px 0px;
+  font-weight: 500;
+
+  &:not(:last-child){
+    margin-right: 5px;
+  }
+
   .icon{
     display: flex;
     justify-content: center;
     width: 25%;
+    padding-left: 2px;
   }
   .name{
     display: flex;
-    justify-content: center;
+    padding-left: 10px;
     width: 75%;
-    color: $fontLight;
   }
 
   &.bug{

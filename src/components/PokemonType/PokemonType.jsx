@@ -1,13 +1,13 @@
 import styles from './PokemonType.module.scss'
 import { capitalize } from '@/utils'
-import { AiFillBug, AiFillFire } from 'react-icons/ai'
+import { AiFillBug } from 'react-icons/ai'
 import { CgDarkMode, CgTerrain, CgShapeCircle } from 'react-icons/cg'
 import { SiDungeonsanddragons } from 'react-icons/si'
 import { MdOutlineElectricBolt, MdWaterDrop, MdBrightness7 } from 'react-icons/md'
 import { GiPunchBlast, GiLibertyWing, GiHighGrass, GiRollingEnergy, GiStoneBlock } from 'react-icons/gi'
 import { RiGhost2Fill } from 'react-icons/ri'
 import { FaSnowflake, FaSkull } from 'react-icons/fa'
-import { BsGearFill } from 'react-icons/bs'
+import { BsGearFill, BsFire } from 'react-icons/bs'
 
 const iconMappings = {
   bug: <AiFillBug/>,
@@ -16,7 +16,7 @@ const iconMappings = {
   electric: <MdOutlineElectricBolt/>,
   fairy: <MdBrightness7/>,
   fighting: <GiPunchBlast/>,
-  fire: <AiFillFire/>,
+  fire: <BsFire/>,
   flying: <GiLibertyWing/>,
   ghost: <RiGhost2Fill/>,
   grass: <GiHighGrass/>,

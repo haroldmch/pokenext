@@ -25,7 +25,6 @@ export default function Home () {
   return (
     <>
       <Pokemon id={id} cache="false"/>
-      <h3>{id}</h3>
     </>
   )
 }
